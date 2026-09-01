@@ -1,0 +1,82 @@
+{
+  "name": "claude-artifact",
+  "style": {
+    "colors": {
+      "primary": "#3b82f6",
+      "primary-light": "#60a5fa",
+      "primary-dark": "#2563eb",
+      "secondary": "#475569",
+      "accent": "#d97706",
+      "background": "#ffffff",
+      "surface": "#f9fafb",
+      "text": "#1a1a1a",
+      "text-muted": "#666666",
+      "border": "#e5e5e5",
+      "link": "#3b82f6",
+      "success": "#16a34a",
+      "warning": "#d97706",
+      "error": "#dc2626"
+    },
+    "fonts": {
+      "body": "\"Source Serif 4\",Georgia,serif",
+      "heading": "\"Archivo\",Arial,sans-serif",
+      "mono": "\"IBM Plex Mono\",monospace"
+    },
+    "borders": {
+      "radius": "0.5rem",
+      "width": "1px"
+    },
+    "shadows": {
+      "card": "none",
+      "elevated": "0 4px 12px rgba(0,0,0,0.1)"
+    },
+    "hero": {
+      "gradient": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+      "text-color": "#ffffff"
+    }
+  },
+  "spacing": {
+    "base": "1rem",
+    "page-margin": "2cm",
+    "section-gap": "2rem",
+    "column-gap": "1.5rem",
+    "card-padding": "1.5rem",
+    "block-padding": "1rem"
+  },
+  "syntax": {
+    "background": "#1d2021",
+    "foreground": "#ebdbb2",
+    "keyword": "#cc241d",
+    "string": "#98971a",
+    "number": "#689d6a",
+    "function": "#b16286",
+    "comment": "#928374",
+    "type": "#d79921",
+    "variable": "#fabd2f",
+    "operator": "#ebdbb2",
+    "punctuation": "#ebdbb2",
+    "property": "#458588",
+    "tag": "#cc241d",
+    "attribute": "#d79921",
+    "selector": "#98971a",
+    "regexp": "#689d6a",
+    "builtin": "#d3869b",
+    "meta": "#928374",
+    "addition": "#98971a",
+    "deletion": "#cc241d"
+  },
+  "fonts": [
+    {
+      "family": "Archivo",
+      "google": "wght@600;700"
+    },
+    {
+      "family": "Source Serif 4",
+      "google": "wght@400;600"
+    },
+    {
+      "family": "IBM Plex Mono",
+      "google": "wght@400;500;600"
+    }
+  ]
+}

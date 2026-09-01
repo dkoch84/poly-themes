@@ -1,0 +1,56 @@
+/page --pageless --margin 1.4cm --theme claude-artifact
+
+<div class="mast">
+<div class="eyebrow"><span>Example document</span><span>claude-artifact</span><span>Q3 review</span></div>
+<h1>A theme for documents that carry numbers</h1>
+<p class="standfirst">Hairline rules, tabular numerals, and one blue accent. Built for dense analytical reports where the table is the argument and the prose is the commentary.</p>
+</div>
+
+<div class="stats">
+<div class="stat"><span class="n">3,766</span><span class="l">Repositories<br>across 5 systems</span></div>
+<div class="stat"><span class="n">1,846</span><span class="l">Pipelines<br>counted</span></div>
+<div class="stat"><span class="n"><span class="approx">~</span>2,300</span><span class="l">Estimated<br>with gaps filled</span></div>
+<div class="stat"><span class="n">0</span><span class="l">Rows validated<br>by an owner</span></div>
+</div>
+
+<div class="sec">
+<h2><span class="idx">01</span> Sections carry a number</h2>
+
+<p class="lead">The lead paragraph sits slightly larger than body text and takes a little air above it, so a section opens rather than simply continues.</p>
+
+Body copy is Source Serif 4 at a size tuned for a narrow measure. Headings are Archivo; anything that is data, a label, or a caption is IBM Plex Mono. The three faces do different jobs and never compete.
+
+<h4>Tables are the point</h4>
+<div class="tbl"><table>
+<colgroup><col style="width:30%"><col style="width:16%"><col style="width:16%"><col style="width:16%"><col style="width:22%"></colgroup>
+<thead><tr><th>Platform</th><th class="n">Repos</th><th class="n">Pipelines</th><th class="n">Share</th><th>Disposition</th></tr></thead>
+<tbody>
+<tr><td class="key">GitHub</td><td class="n">2,245</td><td class="n">&ndash;</td><td class="n">60%</td><td class="dim">In place</td></tr>
+<tr><td class="key">Azure DevOps</td><td class="n">557</td><td class="n">581</td><td class="n">15%</td><td class="dim">Rewire</td></tr>
+<tr><td class="key">Bitbucket</td><td class="n">247</td><td class="n">26</td><td class="n">7%</td><td class="dim">Rebuild</td></tr>
+<tr class="tot"><td>Total</td><td class="n">3,049</td><td class="n">607</td><td class="n">82%</td><td></td></tr>
+</tbody></table></div>
+<p class="caption">Captions sit tight under the table they describe, in mono, at the size of a footnote. Numeric columns are right-aligned and tabular, so digits line up down the column.</p>
+
+<div class="callout">
+<div class="hd">Callouts hold the one thing worth stopping for</div>
+<p>Bordered on the accent, quiet everywhere else. Use them for a decision, a risk, or the sentence a reader would otherwise skim past.</p>
+</div>
+
+<h4>Tagged lists</h4>
+<div class="gap"><span class="pill blocker">Blocks</span><div class="body"><b>Severity reads at a glance.</b> Three variants: blocker, risk, confirm. The pill column is a token, so a wider page widens the gutter instead of forking the theme.</div></div>
+<div class="gap"><span class="pill risk">Risk</span><div class="body"><b>Colour is never the only signal.</b> Every pill carries its label, so the distinction survives greyscale printing.</div></div>
+<div class="gap"><span class="pill confirm">Confirm</span><div class="body"><b>The quiet variant recedes.</b> Neutral ground, muted ink, same shape.</div></div>
+
+<h4>Bar rows</h4>
+<div class="chart">
+<div class="bar-row"><div class="bar-lab">GitHub<br><span class="dim">26 orgs</span></div><div class="bar-track"><div class="bar s1" style="width:100%"></div><div class="bar-val">2,245</div></div></div>
+<div class="bar-row"><div class="bar-lab">Azure DevOps<br><span class="dim">5 orgs</span></div><div class="bar-track"><div class="bar s2" style="width:24.8%"></div><div class="bar-val">557</div></div></div>
+<div class="bar-row"><div class="bar-lab">Bitbucket<br><span class="dim">2 workspaces</span></div><div class="bar-track"><div class="bar s2" style="width:11%"></div><div class="bar-val">247</div></div></div>
+<div class="legend"><span><i class="sw s1"></i>Already migrated</span><span><i class="sw s2"></i>Outstanding</span></div>
+</div>
+</div>
+
+<div class="foot">
+Hand-built bars, not a charting library: two divs and a token. Everything on this page comes from theme.css plus the markup shown in the repo.
+</div>
