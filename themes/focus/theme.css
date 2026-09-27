@@ -1,0 +1,183 @@
+/* focus
+   The "Focus" design language as a document theme: calm, light, border-free.
+
+   Border-free   Tiles lift off a gray page with one soft shadow. Nothing draws
+                 a line: no borders, dividers, outlines or row rules. Separate
+                 with space and background steps instead.
+   Color = state Running amber, review purple, failed red, done green, links
+                 blue. A color that does not mean a state is not there.
+   Type          Ubuntu for everything (names in Ubuntu Light at display size,
+                 never bold), kickers in small heavy capitals, JetBrains Mono
+                 for identifiers only: ids, branches, paths, commands.
+                 Faces ship in fonts/ as Latin woff2 and are inlined, so builds
+                 need no network.
+
+   Building blocks (raw HTML inside the .poly):
+     .tile                      white surface with the soft shadow
+     .kicker                    small heavy capitals; add .run/.review/.fail/.pass/.link/.muted
+     .display                   Ubuntu Light, slightly tight
+     .dot + state class         9px state dot (.wait is a hollow amber ring)
+     .stats > .stat             metric tiles: .n number, .l label
+     .callout.<state>           tinted note, no border
+     .dotbar                    dense dot progress bar (4 dots per task)
+     .timeline > .ev            time / dot / text rows
+     .chip, .chip.<state>       small tinted label; .id for mono identifiers
+     .bars > .bar               horizontal bar chart rows
+*/
+:root{
+  --f-bg:#f0f2f5; --f-surface:#ffffff; --f-subtle:#f6f7f9; --f-muted:#f0f2f5; --f-quiet:#f1f3f6;
+  --f-fg:#1b1f24; --f-fg-muted:#636c76; --f-fg-subtle:#6e7781; --f-empty:#e1e4e8;
+  --f-link:#3d63dd; --f-run:#b35900; --f-review:#6b4fc4; --f-fail:#cf222e; --f-pass:#1a7f37; --f-teal:#0e8a84;
+  --f-tint-link:#edf3fd; --f-tint-run:#fff5e0; --f-tint-review:#f3effc; --f-tint-fail:#fdecec; --f-tint-pass:#e9f7ef;
+  --f-shadow:0 1px 2px rgba(20,30,50,0.06);
+  --f-radius:12px;
+  --poly-font-body:"Ubuntu",system-ui,sans-serif;
+  --poly-font-heading:"Ubuntu",system-ui,sans-serif;
+  --poly-font-mono:"JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+html,body{background:var(--f-bg)}
+body{color:var(--f-fg);font-family:var(--poly-font-body);font-size:14px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums;
+  -webkit-print-color-adjust:exact;print-color-adjust:exact}
+.poly-document{background:var(--f-bg);max-width:980px;padding:2.4rem 2rem 3rem}
+.poly-content{max-width:none}
+
+/* ── Type ─────────────────────────────────────────────────────────── */
+h1,h2,h3,h4{color:var(--f-fg);font-family:var(--poly-font-heading)}
+h1{font-weight:300;font-size:34px;line-height:1.1;letter-spacing:-.02em;margin:0 0 .4em}
+h2{font-weight:300;font-size:25px;line-height:1.2;letter-spacing:-.015em;margin:2.2em 0 .5em;border:0}
+h3{font-weight:500;font-size:16px;line-height:1.3;margin:1.6em 0 .4em}
+h4{font-weight:700;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--f-fg-muted);margin:1.4em 0 .4em}
+p{margin:.5em 0 .8em}
+strong,b{font-weight:500}
+a{color:var(--f-link);text-decoration:none}
+a:hover{text-decoration:underline}
+ul,ol{padding-left:1.4em;margin:.4em 0 .9em}
+li{margin:.18em 0}
+li::marker{color:var(--f-fg-subtle)}
+hr{border:0;height:0;margin:2em 0}
+.display{font-weight:300;letter-spacing:-.015em}
+.muted{color:var(--f-fg-muted)}
+.subtle{color:var(--f-fg-subtle)}
+.lede{font-size:16.5px;line-height:1.55;color:var(--f-fg-muted);font-weight:300}
+
+.kicker{display:block;font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;line-height:1.3;color:var(--f-fg-subtle)}
+.kicker.run{color:var(--f-run)} .kicker.review{color:var(--f-review)} .kicker.fail{color:var(--f-fail)}
+.kicker.pass{color:var(--f-pass)} .kicker.link{color:var(--f-link)} .kicker.muted{color:var(--f-fg-muted)}
+
+/* Code: identifiers only, on a background step, no borders */
+code{font-family:var(--poly-font-mono);font-size:.86em;background:var(--f-muted);padding:.08em .35em;border-radius:5px;border:0}
+pre{background:var(--f-subtle) !important;border:0 !important;border-radius:var(--f-radius);padding:12px 14px;
+  font-size:12px;line-height:1.55;box-shadow:none;overflow-x:auto}
+pre code{background:transparent;padding:0;font-size:inherit}
+.poly-code,.poly-code-block{border:0 !important;border-radius:var(--f-radius);box-shadow:none}
+
+/* Tables: no rules. Header is small caps on a background step; rows separate by space */
+table{border-collapse:separate;border-spacing:0;width:100%;margin:.8em 0 1.2em;font-size:12.5px;
+  background:var(--f-surface);border-radius:var(--f-radius);box-shadow:var(--f-shadow);overflow:hidden;border:0}
+th{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--f-fg-subtle);
+  background:var(--f-subtle);text-align:left;padding:8px 10px;border:0}
+td{padding:6px 10px;border:0;vertical-align:top}
+tbody tr:nth-child(even) td{background:#fafbfc}
+td code{font-size:11px}
+table.num td:not(:first-child),table.num th:not(:first-child){text-align:right}
+table.plain{box-shadow:none;background:transparent}
+
+blockquote{border:0;margin:1em 0;padding:10px 14px;background:var(--f-quiet);border-radius:var(--f-radius);color:var(--f-fg-muted)}
+
+/* Images and figures */
+figure{margin:1.2em 0}
+figcaption{font-size:11.5px;color:var(--f-fg-subtle);margin-top:6px}
+img{max-width:100%}
+.shot img,.shot svg{border-radius:var(--f-radius);box-shadow:0 10px 30px rgba(20,30,50,0.14),0 1px 3px rgba(20,30,50,0.08)}
+
+/* ── Surfaces ─────────────────────────────────────────────────────── */
+.tile,.poly-card{background:var(--f-surface);border-radius:var(--f-radius);box-shadow:var(--f-shadow);border:0 !important;padding:14px 16px}
+.tile > :first-child,.poly-card .poly-content > :first-child{margin-top:0}
+.tile > :last-child{margin-bottom:0}
+.tile.run{background:var(--f-tint-run)} .tile.review{background:var(--f-tint-review)} .tile.fail{background:var(--f-tint-fail)}
+.tile.pass{background:var(--f-tint-pass)} .tile.link{background:var(--f-tint-link)} .tile.quiet{background:var(--f-quiet);box-shadow:none}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:1em 0 1.4em}
+.tiles.two{grid-template-columns:1fr 1fr} .tiles.three{grid-template-columns:1fr 1fr 1fr}
+.tile .t-title{display:block;font-weight:300;font-size:17px;letter-spacing:-.01em;line-height:1.25;margin:3px 0 5px}
+.tile p{margin:.3em 0;font-size:13px}
+
+/* State dots */
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;vertical-align:middle;margin-right:6px;background:var(--f-fg-subtle)}
+.dot.run{background:var(--f-run)} .dot.review{background:var(--f-review)} .dot.fail{background:var(--f-fail)}
+.dot.pass{background:var(--f-pass)} .dot.link{background:var(--f-link)}
+.dot.wait{background:transparent;box-shadow:inset 0 0 0 2px var(--f-run)}
+.dot.off{background:transparent;box-shadow:inset 0 0 0 2px var(--f-empty)}
+
+/* Metric tiles */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:10px;margin:1.1em 0 1.5em}
+.stat{background:var(--f-surface);border-radius:var(--f-radius);box-shadow:var(--f-shadow);padding:12px 14px 13px}
+.stat .n{display:block;font-weight:300;font-size:28px;line-height:1.05;letter-spacing:-.02em;color:var(--f-fg)}
+.stat .n small{font-size:14px;color:var(--f-fg-subtle);font-weight:400}
+.stat .l{display:block;margin-top:5px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--f-fg-subtle);line-height:1.35}
+.stat.run{background:var(--f-tint-run)} .stat.review{background:var(--f-tint-review)} .stat.pass{background:var(--f-tint-pass)}
+.stat.fail{background:var(--f-tint-fail)} .stat.link{background:var(--f-tint-link)}
+.stat.run .n{color:var(--f-run)} .stat.review .n{color:var(--f-review)} .stat.pass .n{color:var(--f-pass)}
+.stat.fail .n{color:var(--f-fail)} .stat.link .n{color:var(--f-link)}
+
+/* Callouts: a tint, never a border */
+.callout{border-radius:var(--f-radius);padding:11px 14px;margin:1em 0 1.2em;background:var(--f-tint-link);font-size:13.5px}
+.callout > :first-child{margin-top:0} .callout > :last-child{margin-bottom:0}
+.callout .kicker{margin-bottom:3px;color:var(--f-link)}
+.callout.run{background:var(--f-tint-run)} .callout.run .kicker{color:var(--f-run)}
+.callout.review{background:var(--f-tint-review)} .callout.review .kicker{color:var(--f-review)}
+.callout.fail{background:var(--f-tint-fail)} .callout.fail .kicker{color:var(--f-fail)}
+.callout.pass{background:var(--f-tint-pass)} .callout.pass .kicker{color:var(--f-pass)}
+.callout.quiet{background:var(--f-quiet)} .callout.quiet .kicker{color:var(--f-fg-muted)}
+
+/* Chips */
+.chip{display:inline-block;font-size:10.5px;font-weight:500;line-height:1.5;padding:0 7px;border-radius:6px;background:var(--f-muted);color:var(--f-fg-muted);white-space:nowrap}
+.chip.id{font-family:var(--poly-font-mono);font-weight:400;font-size:10.5px}
+.chip.run{background:var(--f-tint-run);color:var(--f-run)} .chip.review{background:var(--f-tint-review);color:var(--f-review)}
+.chip.fail{background:var(--f-tint-fail);color:var(--f-fail)} .chip.pass{background:var(--f-tint-pass);color:var(--f-pass)}
+.chip.link{background:var(--f-tint-link);color:var(--f-link)}
+
+/* The dense dot progress bar: DOTS per task, filled by how far each task came */
+.dotbar{display:grid;grid-auto-flow:column;grid-template-rows:repeat(var(--rows,2),5px);grid-auto-columns:5px;gap:2px;margin:6px 0}
+.dotbar i{display:block;border-radius:50%;background:var(--f-empty)}
+.dotbar i.p{background:var(--f-pass)} .dotbar i.r{background:var(--f-review)} .dotbar i.w{background:var(--f-run)}
+
+/* Timeline: time, dot, text. Space separates rows, no connecting line */
+.timeline{margin:1em 0 1.4em;background:var(--f-surface);border-radius:var(--f-radius);box-shadow:var(--f-shadow);padding:8px 6px}
+.timeline .ev{display:grid;grid-template-columns:86px 16px 1fr;align-items:baseline;padding:5px 8px;border-radius:8px;font-size:13px}
+.timeline .ev:nth-child(even){background:#fafbfc}
+.timeline .ev .t{font-family:var(--poly-font-mono);font-size:11px;color:var(--f-fg-subtle)}
+.timeline .ev .dot{margin:0;position:relative;top:-1px}
+.timeline .ev .x b{font-weight:500}
+
+/* Horizontal bars */
+.bars{margin:.8em 0 1.3em;background:var(--f-surface);border-radius:var(--f-radius);box-shadow:var(--f-shadow);padding:10px 14px}
+.bar{display:grid;grid-template-columns:var(--label,150px) 1fr 64px;align-items:center;gap:10px;font-size:12.5px;padding:3px 0}
+.bar .track{height:8px;border-radius:4px;background:var(--f-muted);overflow:hidden}
+.bar .fill{height:100%;border-radius:4px;background:var(--f-link)}
+.bar .fill.run{background:var(--f-run)} .bar .fill.review{background:var(--f-review)} .bar .fill.pass{background:var(--f-pass)} .bar .fill.fail{background:var(--f-fail)}
+.bar .v{text-align:right;color:var(--f-fg-muted);font-size:11.5px}
+
+/* Cover: a full tile on the gray page */
+.cover{padding:8px 0 0}
+.cover .brand{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--f-fg-muted)}
+.cover .brand b{font-weight:500;color:var(--f-fg)}
+.cover h1{font-size:52px;line-height:1.02;letter-spacing:-.03em;margin:.5em 0 .25em}
+.cover .lede{font-size:19px;max-width:34em}
+.cover .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+
+/* Hand-made contents */
+.toc{background:var(--f-surface);border-radius:var(--f-radius);box-shadow:var(--f-shadow);padding:12px 16px;margin:1.2em 0 1.6em;columns:2;column-gap:28px;font-size:13px}
+.toc a{display:block;padding:2px 0;color:var(--f-fg)}
+.toc a .n{display:inline-block;width:26px;color:var(--f-fg-subtle);font-family:var(--poly-font-mono);font-size:11px}
+/* A section kicker sits right above its heading: the kicker's paragraph carries
+   the section gap, the heading drops its own top margin */
+p:has(> .sec-kicker){margin:3.2em 0 0}
+p:has(> .sec-kicker) + h2{margin-top:.15em}
+.sec-kicker{margin:0}
+
+@media print{
+  h2{break-after:avoid} h3{break-after:avoid}
+  .tile,.stat,.callout,.timeline .ev,figure,table,.bars{break-inside:avoid}
+}

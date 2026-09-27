@@ -1,0 +1,81 @@
+{
+  "name": "focus",
+  "style": {
+    "colors": {
+      "primary": "#3d63dd",
+      "primary-light": "#edf3fd",
+      "primary-dark": "#2c4bb3",
+      "secondary": "#6b4fc4",
+      "accent": "#0e8a84",
+      "background": "#f0f2f5",
+      "surface": "#ffffff",
+      "text": "#1b1f24",
+      "text-muted": "#636c76",
+      "border": "#e1e4e8",
+      "link": "#3d63dd",
+      "success": "#1a7f37",
+      "warning": "#b35900",
+      "error": "#cf222e",
+      "heading": "#1b1f24",
+      "heading-sub": "#636c76"
+    },
+    "fonts": {
+      "body": "\"Ubuntu\",system-ui,sans-serif",
+      "heading": "\"Ubuntu\",system-ui,sans-serif",
+      "mono": "\"JetBrains Mono\",ui-monospace,monospace"
+    },
+    "borders": {
+      "radius": "12px",
+      "width": "0px"
+    },
+    "shadows": {
+      "card": "0 1px 2px rgba(20,30,50,0.06)",
+      "elevated": "0 10px 30px rgba(20,30,50,0.14), 0 1px 3px rgba(20,30,50,0.08)"
+    },
+    "hero": {
+      "gradient": "linear-gradient(135deg, #3d63dd 0%, #6b4fc4 100%)",
+      "text-color": "#ffffff",
+      "background": "#3d63dd"
+    }
+  },
+  "spacing": {
+    "base": "1rem",
+    "page-margin": "1.6cm",
+    "section-gap": "2rem",
+    "column-gap": "12px",
+    "card-padding": "14px 16px",
+    "block-padding": "12px"
+  },
+  "syntax": {
+    "background": "#f6f7f9",
+    "foreground": "#1b1f24",
+    "keyword": "#cf222e",
+    "string": "#0a3069",
+    "number": "#0550ae",
+    "function": "#6b4fc4",
+    "comment": "#6e7781",
+    "type": "#953800",
+    "variable": "#1b1f24",
+    "operator": "#1b1f24",
+    "punctuation": "#636c76",
+    "property": "#0550ae",
+    "tag": "#116329",
+    "attribute": "#0550ae",
+    "selector": "#6b4fc4",
+    "regexp": "#0a3069",
+    "builtin": "#953800",
+    "meta": "#636c76",
+    "addition": "#0969da",
+    "deletion": "#cf222e",
+    "additionBg": "#ddf4ff",
+    "deletionBg": "#ffebe9"
+  },
+  "fonts": [
+    { "family": "Ubuntu", "src": "fonts/Ubuntu-300.woff2", "weight": "300" },
+    { "family": "Ubuntu", "src": "fonts/Ubuntu-400.woff2", "weight": "400", "body": true, "heading": true },
+    { "family": "Ubuntu", "src": "fonts/Ubuntu-400i.woff2", "weight": "400", "style": "italic" },
+    { "family": "Ubuntu", "src": "fonts/Ubuntu-500.woff2", "weight": "500" },
+    { "family": "Ubuntu", "src": "fonts/Ubuntu-700.woff2", "weight": "700" },
+    { "family": "JetBrains Mono", "src": "fonts/JetBrainsMono.woff2", "weight": "400 500", "mono": true }
+  ]
+}

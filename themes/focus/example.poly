@@ -1,0 +1,59 @@
+/page --pageless --width 1080px --theme focus
+
+<div class="cover">
+<div class="brand"><span class="dot link"></span><b>Northwind</b> · Release review</div>
+
+# Payments v2 rollout
+
+<p class="lede">A calm, light theme for status reports: tiles lift off a gray page, nothing draws a line, and colour only ever means a state.</p>
+
+<div class="meta"><span class="chip id">payments-v2</span><span class="chip pass">shipped</span><span class="chip">Week 38</span></div>
+</div>
+
+<div class="stats">
+<div class="stat pass"><span class="n">14<small>/16</small></span><span class="l">tasks done</span></div>
+<div class="stat run"><span class="n">1</span><span class="l">in progress</span></div>
+<div class="stat review"><span class="n">1</span><span class="l">in review</span></div>
+<div class="stat"><span class="n">212<small> ms</small></span><span class="l">p95 checkout</span></div>
+</div>
+
+<div class="dotbar" style="--rows:2"><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="r"></i><i class="r"></i><i class="r"></i><i></i><i class="w"></i><i></i><i></i><i></i></div>
+
+<span class="kicker link sec-kicker">01 · Where it stands</span>
+
+## Everything but the ledger export
+
+The new card flow is live for all regions. Two tasks remain: the ledger export is in review, and the refund webhook is being rewritten.
+
+<div class="tiles">
+<div class="tile pass"><span class="kicker pass">Shipped</span><span class="t-title">Card flow</span><p>All regions since Tuesday.</p></div>
+<div class="tile review"><span class="kicker review">In review</span><span class="t-title">Ledger export</span><p>Waiting on finance sign-off.</p></div>
+<div class="tile run"><span class="kicker run">Working</span><span class="t-title">Refund webhook</span><p>Retries move to a queue.</p></div>
+</div>
+
+<div class="callout run"><span class="kicker">Watch</span>
+
+Refunds over the old webhook still work, but retry inline. Expect duplicate notifications until the queue lands.
+
+</div>
+
+| Service | Owner | p95 | Status |
+|---|---|---|---|
+| `checkout` | payments | 212 ms | <span class="chip pass">healthy</span> |
+| `ledger-export` | finance | n/a | <span class="chip review">review</span> |
+| `refunds` | payments | 840 ms | <span class="chip run">working</span> |
+
+<div class="timeline">
+<div class="ev"><span class="t">Mon 09:10</span><span class="dot pass"></span><span class="x"><b>Card flow</b> enabled for EU.</span></div>
+<div class="ev"><span class="t">Tue 14:02</span><span class="dot pass"></span><span class="x"><b>All regions</b> switched over.</span></div>
+<div class="ev"><span class="t">Thu 11:45</span><span class="dot review"></span><span class="x"><b>Ledger export</b> sent for review.</span></div>
+</div>
+
+<div class="bars" style="--label:120px">
+<div class="bar"><span>checkout</span><span class="track"><span class="fill pass" style="width:25%;display:block"></span></span><span class="v">212 ms</span></div>
+<div class="bar"><span>refunds</span><span class="track"><span class="fill run" style="width:100%;display:block"></span></span><span class="v">840 ms</span></div>
+</div>
+
+```ts
+export const retryPolicy = { attempts: 5, backoffMs: 400 }; // queue-backed
+```
